@@ -8,7 +8,6 @@ Module to create DMS Instance.
 - Tags
 - Subnet Group
 - DMS Instance
-- IAM Role (x3)
 
 ## Input Variables
 
