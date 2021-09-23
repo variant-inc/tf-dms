@@ -20,7 +20,7 @@ resource "aws_dms_replication_task" "task" {
 }
 
 resource "aws_dms_endpoint" "source_endpoint" {
-  database_name = var.source_database_name
+  database_name = var.source_db_name
   endpoint_id   = var.source_endpoint_id
   endpoint_type = "source"
   engine_name   = "postgres"
@@ -34,7 +34,7 @@ resource "aws_dms_endpoint" "source_endpoint" {
 }
 
 resource "aws_dms_endpoint" "target_endpoint" {
-  database_name = var.target_database_name
+  database_name = var.target_db_name
   endpoint_id   = var.target_endpoint_id
   endpoint_type = "target"
   engine_name   = "postgres"

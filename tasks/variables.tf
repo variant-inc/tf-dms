@@ -51,12 +51,12 @@ variable "target_server_name" {
   description = "Target cluster host name"
 }
 
-variable "source_user_name" {
+variable "source_username" {
   type        = string
   description = "Source database username"
 }
 
-variable "target_user_name" {
+variable "target_username" {
   type        = string
   description = "Target database username"
 }
@@ -69,4 +69,19 @@ variable "source_password" {
 variable "target_password" {
   type        = string
   description = "Target database password"
+}
+
+variable "name" {
+  type        = string
+  description = "name for tagging purposes"
+}
+
+variable "user_tags" {
+    type = map(string)
+    description = "User tags for tagging"
+}
+
+variable "octopus_tags" {
+    type = map(string)
+    description = "Octopus defined tags"
 }
