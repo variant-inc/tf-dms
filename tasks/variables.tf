@@ -77,11 +77,11 @@ variable "name" {
 }
 
 variable "user_tags" {
-    type = map(string)
-    description = "User tags for tagging"
+  type        = map(string)
+  description = "User tags for tagging"
 }
 
 variable "octopus_tags" {
-    type = map(string)
-    description = "Octopus defined tags"
+  type        = map(string)
+  description = "Octopus defined tags"
 }
