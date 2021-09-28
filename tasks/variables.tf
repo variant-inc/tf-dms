@@ -9,7 +9,7 @@ variable "replication_instance_arn" {
   description = "arn of the replication instance this task should be assigned to"
 }
 
-variable "task_id_prefix" {
+variable "task_id" {
   type        = string
   description = "Prefix of replication task ID"
   default     = "lazy-replication"

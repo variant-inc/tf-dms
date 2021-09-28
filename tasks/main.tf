@@ -9,7 +9,7 @@ module "tags" {
 resource "aws_dms_replication_task" "task" {
   migration_type           = var.migration_type
   replication_instance_arn = var.replication_instance_arn
-  replication_task_id      = var.task_id_prefix
+  replication_task_id      = var.task_id
   table_mappings           = var.table_mappings
 
   source_endpoint_arn = aws_dms_endpoint.source_endpoint.endpoint_arn
