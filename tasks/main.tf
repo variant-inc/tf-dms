@@ -10,7 +10,7 @@ resource "aws_dms_replication_task" "task" {
   migration_type           = var.migration_type
   replication_instance_arn = var.replication_instance_arn
   replication_task_id      = var.task_id
-  table_mappings           = var.table_mappings
+  table_mappings           = file(var.table_mappings)
 
   source_endpoint_arn = aws_dms_endpoint.source_endpoint.endpoint_arn
   target_endpoint_arn = aws_dms_endpoint.target_endpoint.endpoint_arn

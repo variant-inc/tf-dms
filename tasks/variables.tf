@@ -17,17 +17,17 @@ variable "task_id" {
 
 variable "table_mappings" {
   type        = string
-  description = "JSON valid string defining table mappings"
-  default     = "{\"rules\":[{\"rule-type\":\"selection\",\"rule-id\":\"1\",\"rule-name\":\"1\",\"object-locator\":{\"schema-name\":\"%\",\"table-name\":\"%\"},\"rule-action\":\"include\"}]}"
+  description = "Table mapping json file"
+  default     = "default_table_mapping.json"
 }
 
 variable "source_db" {
-  type = map
+  type        = map(any)
   description = "source db info"
 }
 
 variable "target_db" {
-  type = map
+  type        = map(any)
   description = "target db info"
 }
 

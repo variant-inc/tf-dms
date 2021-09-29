@@ -18,7 +18,7 @@ Module to create DMS Tasks.
  | replication_instance_arn     | string        |                     | arn:aws:dms:us-west-2:123456:rep:ASDF|
  | task_id                      | string        | lazy_replication    | lazy_task_1234       |
  | replication_instance_class   | string        | dms.t2.micro        | dms.t2.medium        |
- | table_mappings               | string        | `see below`         |                      |
+ | table_mappings               | string        | default_table_mapping.json  |                      |
  | source_db                    | string        |                     | `see below`          |
  | target_db                    | string        |                     | `see below`          |
  | user_tags                    | map(string)   |                     | `see below`          |
