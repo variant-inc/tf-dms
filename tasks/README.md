@@ -19,16 +19,8 @@ Module to create DMS Tasks.
  | task_id                      | string        | lazy_replication    | lazy_task_1234       |
  | replication_instance_class   | string        | dms.t2.micro        | dms.t2.medium        |
  | table_mappings               | string        | `see below`         |                      |
- | source_db_name               | string        | postgres            | postgres             |
- | target_db_name               | string        | postgres            | postgres             |
- | source_username              | string        |                     | postgres             |
- | target_username              | string        |                     | postgres             |
- | source_password              | string        |                     | password             |
- | target_password              | string        |                     | password             |
- | source_server_name           | string        |                     | variant-ops.asdf.us-west-2.rds.amazon.com |
- | target_server_name           | string        |                     | lazy-dms.asdf.us-west-2.rds.amazon.com  |
- | source_endpoint_id           | string        |                     |                      |
- | target_endpoint_id           | string        |                     |                      |
+ | source_db                    | string        |                     | `see below`          |
+ | target_db                    | string        |                     | `see below`          |
  | user_tags                    | map(string)   |                     | `see below`          |
  | octopus_tags                 | map(string)   |                     | `see below`          |
 
@@ -58,16 +50,20 @@ module "dms_task" {
   migration_type = "full_load_and_cdc"
   replication_instance_arn = "arn:aws:dms:us-west-2:12345:rep:ASDF"
   task_id = "lazy-dms-task"
-  source_db_name = "postgres"
-  target_db_name = "postgres"
-  source_endpoint_id = "lazy-source-test"
-  target_endpoint_id = "lazy-target-test"
-  source_server_name = "source-rds.adsf.us-west-2.rds.amazonaws.com"
-  target_server_name = "target-rds.adsf.us-west-2.rds.amazonaws.com"
-  source_username = "postgres"
-  target_username = "postgres"
-  source_password = "password"
-  target_password = "password"
+  source_db = {
+    "endpoint_id": "lazy-source-test",
+    "server_name": "test_src_db.asdf.us-west-2.rds.amazonaws.com",
+    "db_name": "postgres",
+    "username": "username",
+    "password": "password"
+  },
+  target_db = {
+    "endpoint_id": "lazy-target-test",
+    "server_name": "test_tgt_db.asdf.us-west-2.rds.amazonaws.com",
+    "db_name": "postgres",
+    "username": "username",
+    "password": "password"
+  },
 
   user_tags    = {
     team       = "devops"
@@ -82,31 +78,35 @@ module "dms_task" {
 
 ```json
 {
-    "name": "lazy-dms-test",
-    "migration_type": "full-load-and-cdc",
-    "replication_instance_arn": "arn:aws:dms:us-west-2:1234567890:rep:ASDF",
-    "task_id": "lazy-dms-test",
-    "source_db_name": "postgres",
-    "target_db_name": "postgres",
-    "source_endpoint_id": "lazy-source-test",
-    "target_endpoint_id": "lazy-target-test",
-    "source_server_name": "variant-ops.cfubiw5nehry.us-west-2.rds.amazonaws.com",
-    "target_server_name": "lazy-dms-test.cfubiw5nehry.us-west-2.rds.amazonaws.com",
-    "source_username": "postgres",
-    "target_username": "postgres",
-    "source_password": "password",
-    "target_password": "password",
-    "user_tags": {
-      "team": "devops",
-      "purpose": "dms-testing",
-      "owner": "devops"
-    },
-    "octopus_tags": {
-      "project": "n/a",
-      "space": "DevOps",
-      "environment": "devops",
-      "project_group": "n/a",
-      "release_channel": "n/a"
-    }
+  "name": "lazy-dms-test",
+  "migration_type": "full-load-and-cdc",
+  "replication_instance_arn": "arn:aws:dms:us-west-2:123456789000:rep:asdfasdfasd",
+  "task_id": "lazy-dms-test",
+  "source_db": {
+    "endpoint_id": "lazy-source-test",
+    "server_name": "test_src_db.asdf.us-west-2.rds.amazonaws.com",
+    "db_name": "postgres",
+    "username": "variant",
+    "password": "password"
+  },
+  "target_db": {
+    "endpoint_id": "lazy-target-test",
+    "server_name": "test_tgt_db.asdf.us-west-2.rds.amazonaws.com",
+    "db_name": "postgres",
+    "username": "variant",
+    "password": "password"
+  },
+  "user_tags": {
+    "team": "devops",
+    "purpose": "dms-testing",
+    "owner": "devops"
+  },
+  "octopus_tags": {
+    "project": "n/a",
+    "space": "DevOps",
+    "environment": "dpl",
+    "project_group": "n/a",
+    "release_channel": "n/a"
   }
+}
 ```
